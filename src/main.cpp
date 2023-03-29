@@ -14,16 +14,26 @@ typedef struct dataSample {
 } Sample;
 
 int main() {
-    NNet::Matrix mat1(2, 3);
-    NNet::Matrix mat2(1, 2);
+    std::shared_ptr<NNet::Matrix> mat1 = std::make_shared<NNet::Matrix>(2, 3);
+    std::shared_ptr<NNet::Matrix> mat2 = std::make_shared<NNet::Matrix>(2, 3);
 
-    for (size_t i = 0; i < mat1.height(); i++) {
-        for (size_t j = 0; j < mat1.width(); j++) {
-            mat1.set(i, j, i + j);
+    for (size_t i = 0; i < mat1->height(); i++) {
+        for (size_t j = 0; j < mat1->width(); j++) {
+            mat1->set(i, j, i + j);
         }
     }
 
-    mat1.print();
+    for (size_t i = 0; i < mat2->height(); i++) {
+        for (size_t j = 0; j < mat2->width(); j++) {
+            mat2->set(i, j, 2 * (i + j));
+        }
+    }
+
+    mat1->print();
+    mat2->print();
+    mat1->applyComponentBinaryOp(mat2, [](float v1, float v2) { return v1 * v2; });
+
+    mat1->print();
 
     // std::shared_ptr<NNet::Matrix> res = mat1.multiply(mat2);
 

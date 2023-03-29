@@ -14,7 +14,6 @@ namespace NNet {
             std::cerr << "Net needs layers" << std::endl;
             throw std::exception();
         }
-        // TODO: validate nets in future if (!net.valid) throw std::exception();
         if (layerInputSize(net.layers[0]) != input.size()) {
             std::cerr << "First Layer input size doesn't match input vector size" << std::endl;
             throw std::exception();
