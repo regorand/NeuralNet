@@ -58,6 +58,9 @@ namespace NNet {
 
         std::shared_ptr<Matrix> copy();
 
+        float summedSquareMagnitude();
+        float summedAbsMagnitude();
+
         void print();
 
 

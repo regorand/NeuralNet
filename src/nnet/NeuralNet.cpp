@@ -147,17 +147,11 @@ namespace NNet {
         for(auto &layer: net.layers) {
             float countFactor = 1.0f / ((float) layer.countGradients);
             for(size_t j = 0; j < layer.cumulatedBiasGradient.size(); j++) {
-                if (abs(layer.cumulatedBiasGradient[j]) >= 1) {
-                    auto x = 5;
-                }
                 sum += countFactor * layer.cumulatedBiasGradient[j] * countFactor * layer.cumulatedBiasGradient[j];
             }
 
             for(size_t j = 0; j < layer.cumulatedWeightGradient.size(); j++) {
                 for(size_t k = 0; k < layer.cumulatedWeightGradient[j].size(); k++) {
-                    if (abs(countFactor * layer.cumulatedWeightGradient[j][k]) >= 1.0) {
-                        auto x = 5;
-                    }
                     sum += countFactor * layer.cumulatedWeightGradient[j][k] * countFactor * layer.cumulatedWeightGradient[j][k];
                 }
             }

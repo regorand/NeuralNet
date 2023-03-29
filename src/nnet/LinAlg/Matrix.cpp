@@ -100,4 +100,24 @@ namespace NNet {
 
         return newMat;
     }
+
+    float Matrix::summedSquareMagnitude() {
+        float sum = 0;
+
+        for (size_t i = 0; i < m_height * m_width; i++) {
+            sum += data[i] * data[i];
+        }
+
+        return sum;
+    }
+
+    float Matrix::summedAbsMagnitude() {
+        float sum = 0;
+
+        for (size_t i = 0; i < m_height * m_width; i++) {
+            sum += fabsf(data[i]);
+        }
+
+        return sum;
+    }
 }
