@@ -6,31 +6,24 @@
 #include <inttypes.h>
 #include <vector>
 #include "ActivationFunction.h"
+#include "LinAlg/Matrix.h"
 
 namespace NNet {
-
-    typedef struct layer_s {
-        std::vector<std::vector<float>> weightMatrix; // Matrix of m_width numberInputs, m_height numberNodes, calculate output as multiplication with input vector
-        std::vector<float> bias;
-        std::vector<float> layerOutput;
-        std::vector<float> preAccOutput;
+    typedef struct {
+        std::shared_ptr<Matrix> weightMatrix;
         ActivationFunction activationFunction;
 
-        std::vector<float> cumulatedBiasGradient;
-        std::vector<std::vector<float>> cumulatedWeightGradient;
-        uint32_t countGradients;
+        std::shared_ptr<Matrix> layerOutput;
+        std::shared_ptr<Matrix> preAccOutput;
+        std::shared_ptr<Matrix> internalError;
+
+        std::shared_ptr<Matrix> cumulatedGradient;
     } NNLayer;
 
     typedef struct layer_def_s {
         uint32_t layerSize;
         ActivationFunction activationFunction;
     } NNLayerDef;
-
-    void calculateLayerOutput(std::vector<float> &inputVector, NNLayer &layer);
-
-    size_t layerOuputSize(NNLayer layer);
-    size_t layerInputSize(NNLayer layer);
-
 }
 
 #endif //NEURALNET_NNLAYER_H

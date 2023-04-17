@@ -68,6 +68,8 @@ void classifyIris() {
 
     float learningRate = 1;
     float prevLoss = 100000;
+
+    /*
     for (size_t i = 0; i < 10000; i++) {
         NNet::clearNet(net);
         float loss = 0;
@@ -157,4 +159,5 @@ void classifyIris() {
         learningRate = loss / trainSetSize;
         NNet::applyGradients(net, learningRate);
     }
+     */
 }

@@ -5,6 +5,8 @@
 #define NEURALNET_UTILS_H
 
 #include <vector>
+#include <cstdint>
+#include <ctime>
 
 namespace NNet {
 
@@ -16,7 +18,7 @@ namespace NNet {
 
     void doVectorVectorTransposeToMatrix(std::vector<float> &vector1, std::vector<float> &vector2, std::vector<std::vector<float>> &resultMat);
 
-    std::vector<float> sampleXOR();
+    std::vector<float> sampleXOR(uint32_t seed = time(nullptr));
 
 }
 
